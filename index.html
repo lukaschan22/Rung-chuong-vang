@@ -33,27 +33,9 @@
             display: inline-block;
             padding-bottom: 10px;
         }
-
-/* Thêm style cho phần hiển thị Audio Control */
-        #audio-controls-container {
-            margin: 10px auto 20px;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background-color: #ffe0e0;
-            max-width: 500px;
-            /* Đảm bảo nó hiển thị ở màn hình bắt đầu */
-            display: block; 
-        }
-        
-        #audio-controls-container p {
-            font-weight: bold;
-            color: #d9534f;
-            margin-top: 0;
-        }
         
         .game-content {
-            display: flex;
+            display: flex; 
             gap: 20px;
             width: 100%;
             margin-top: 20px;
@@ -238,12 +220,12 @@
     <h2>Khúc Xạ Ánh Sáng (Lớp 9)</h2>
 
     <audio id="bgMusic" loop preload="auto">
-       <source src="music1.mp3" type="audio/mp3">
+        <source src="1.mp3" type="audio/mp3"> 
         Trình duyệt của bạn không hỗ trợ thẻ audio.
     </audio>
     
     <audio id="victoryMusic" preload="auto">
-       <source src="music2.mp3" type="audio/mp3">
+        <source src="2.mp3" type="audio/mp3"> 
         Trình duyệt của bạn không hỗ trợ thẻ audio.
     </audio>
 
@@ -272,12 +254,12 @@
             <div id="scoreboard">
                 <h3>🏆 Bảng Điểm 🏆</h3>
                 <div id="score-list">
-                </div>
+                    </div>
             </div>
 
             <div id="game-area">
                 <div id="timer">30</div>
-                <div id="status-message" style="display:none;">HẾT GIỜ!</div>
+                <div id="status-message" style="display:none;"></div>
 
                 <div id="question-display">
                     <div id="question-text">Click nút "Bắt Đầu" để tải câu hỏi đầu tiên...</div>
@@ -309,20 +291,17 @@
     const GROUP_ICONS = ['🌟', '💡', '🚀', '🔬', '🌍', '🧪', '🔥', '💧', '⚡', '✨'];
 
     const questions = [
-        // Câu 1: Giữ nguyên
         { text: "Câu 1. Hiện tượng khúc xạ ánh sáng mô tả sự thay đổi nào của tia sáng?", options: ["A. Tia sáng bị lệch khỏi phương truyền thẳng ban đầu khi đi qua một môi trường trong suốt duy nhất.", "B. Tia sáng bị bẻ cong và quay trở lại môi trường cũ khi gặp mặt phân cách giữa hai môi trường.", "C. Tia sáng bị lệch khỏi phương truyền ban đầu tại mặt phân cách khi truyền từ môi trường trong suốt này sang môi trường trong suốt khác.", "D. Tia sáng bị phân tách thành nhiều màu sắc khác nhau khi đi qua môi trường trong suốt khác."], answerKey: 'C' },
         
-        // Câu 2: Đã bỏ dấu $
         { text: "Câu 2. Trong sơ đồ đường đi của tia sáng bị khúc xạ, góc khúc xạ r được xác định là góc tạo bởi thành phần nào sau đây?", options: ["A. Tia tới và tia khúc xạ.", "B. Tia tới và pháp tuyến tại điểm tới.", "C. Tia khúc xạ và mặt phân cách.", "D. Tia khúc xạ và pháp tuyến tại điểm tới."], answerKey: 'D' }, 
         
-        // Câu 3: Đã bỏ dấu $
         { text: "Câu 3. Theo định luật khúc xạ ánh sáng, đối với hai môi trường trong suốt nhất định, đại lượng nào sau đây luôn không đổi khi góc tới i thay đổi?", options: ["A. Hiệu số sin i và sin r.", "B. Tỉ số giữa sin i và sin r.", "C. Tỉ số giữa góc i và góc r.", "D. Góc khúc xạ r."], answerKey: 'B' }, 
         
-        // Câu 4: Đã bỏ dấu $
+        // --- Đã sửa Câu 4 ---
         { text: "Câu 4. Tốc độ ánh sáng trong chân không là c = 300000 km/s và tốc độ ánh sáng truyền trong nước là v = 225000 km/s. Chiết suất của nước là bao nhiêu?", options: ["A. 1,333.", "B. 1,000.", "C. 1,520.", "D. 1,309."], answerKey: 'A' }, 
         
-        // Câu 5: Đã bỏ dấu $ và thay ^{\\circ} thành "độ"
-        { text: "Câu 5. Một tia sáng truyền từ không khí n1 ≈ 1 vào nước n2 = 1,33. Nếu góc khúc xạ r = 22 độ thì góc tới i xấp xỉ bằng bao nhiêu?", options: ["A. 15 độ", "B. 22 độ", "C. 30 độ", "D. 45 độ"], answerKey: 'C' } 
+        // --- Đã sửa Câu 5 ---
+        { text: "Câu 5. Một tia sáng truyền từ không khí (n1 ≈ 1) vào nước (n2 = 1,33). Nếu góc khúc xạ r = 22 độ thì góc tới i xấp xỉ bằng bao nhiêu?", options: ["A. 15 độ", "B. 22 độ", "C. 30 độ", "D. 45 độ"], answerKey: 'C' } 
     ];
     
     const answerKeyMap = { 'A': 0, 'B': 1, 'C': 2, 'D': 3 };
@@ -332,29 +311,22 @@
     let timeLeft = 30;
     let numGroups = 0;
     let groupScores = []; 
-
+    let isAnswerPhase = false; 
 
     // --- CHỨC NĂNG AUDIO ---
     function playBackgroundMusic() {
         const bgMusic = document.getElementById('bgMusic');
-        document.getElementById('victoryMusic').pause(); 
-        
-        bgMusic.volume = 0.5; 
-        // Thử phát, nhưng chủ yếu dựa vào người dùng bấm nút Play thủ công
+        bgMusic.volume = 0.5;
+        // Lệnh phát nhạc dựa vào tương tác của người dùng khi nhấn "Bắt Đầu Chơi"
         bgMusic.play().catch(e => {
-            console.log('Background music auto-playback blocked. User must use controls on start screen.');
+            console.log('Background music auto-playback blocked.');
         });
     }
 
-    function stopBackgroundMusic() {
-        const bgMusic = document.getElementById('bgMusic');
-        bgMusic.pause();
-    }
-
     function playVictoryMusic() {
-        // Đảm bảo nhạc nền dừng
-        stopBackgroundMusic(); 
-
+        const bgMusic = document.getElementById('bgMusic');
+        bgMusic.pause(); // Dừng nhạc nền khi có nhạc chiến thắng
+        
         const victoryMusic = document.getElementById('victoryMusic');
         victoryMusic.volume = 0.8; 
         victoryMusic.play().catch(e => {
@@ -380,7 +352,7 @@
         document.getElementById('game-screen').style.display = 'flex'; 
         document.getElementById('end-game-results').style.display = 'none';
         
-        playBackgroundMusic();
+        playBackgroundMusic(); 
 
         updateScoreboard();
         setupAnswerInputs();
@@ -396,6 +368,7 @@
         document.getElementById('calculate-btn').style.display = 'none';
         document.getElementById('start-btn').style.display = 'block';
         document.getElementById('input-score-section').style.display = 'none';
+        isAnswerPhase = false; 
     }
 
     // --- Cập nhật bảng điểm ---
@@ -411,7 +384,7 @@
         });
     }
 
-  // --- Thiết lập ô nhập đáp án ---
+    // --- Thiết lập ô nhập đáp án ---
     function setupAnswerInputs() {
         const inputTable = document.getElementById('group-answer-inputs');
         inputTable.innerHTML = '';
@@ -485,16 +458,12 @@
 
             if (timeLeft <= 0) {
                 clearInterval(timer);
-                isAnswerPhase = true; // Chuyển sang giai đoạn chờ nhập đáp án
+                isAnswerPhase = true; 
                 
                 document.getElementById('status-message').style.display = 'block';
                 document.getElementById('status-message').innerHTML = 'HẾT GIỜ! Vui lòng nhập đáp án vào ô và nhấn "XEM ĐÁP ÁN" để tiếp tục.';
 
-                // Ô nhập đáp án vẫn mở
                 document.getElementById('show-answer-btn').style.display = 'block';
-                
-                // Tạm dừng nhạc nền khi hết giờ
-                stopBackgroundMusic();
             }
         }, TIMER_INTERVAL_MS);
     }
@@ -502,15 +471,13 @@
     // --- Hiển thị đáp án ---
     function showAnswer() {
         if (!isAnswerPhase) {
-            alert("Vui lòng đợi hết thời gian đếm ngược hoặc nhấn nút 'XEM ĐÁP ÁN' chỉ sau khi đồng hồ về 0.");
-            return;
+            // Cho phép nhấn xem đáp án khi chưa hết giờ trong trường hợp cần gấp 
+            clearInterval(timer);
+            document.getElementById('timer').innerHTML = 0;
         }
 
         // Khóa các ô nhập lại để nhóm không thay đổi câu trả lời
         Array.from(document.querySelectorAll('#group-answer-inputs input')).forEach(input => input.disabled = true);
-
-        // Phát nhạc nền trở lại
-        playBackgroundMusic(); 
 
         document.getElementById('show-answer-btn').style.display = 'none';
         document.getElementById('status-message').innerHTML = 'Đã chốt đáp án! Nhấn "TÍNH ĐIỂM CÂU NÀY" để xem kết quả.';
@@ -614,4 +581,3 @@
 </script>
 </body>
 </html>
-
